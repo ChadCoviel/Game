@@ -9,9 +9,12 @@ progresses. The game is called: Reclaim. The purpose of the game is to attain lo
 player much traverse a series of physical obstacles and enemies in the journey to Reclaim full knowledge of oneself. 
 
 Controls:
-left d-pad arrow = move left on screen
-right d-pad arrow = move right on screen
-down d-pad arrow = crouch
-up d-pad arrow = look up
+left d-pad arrow = move left on screen,
+right d-pad arrow = move right on screen,
+down d-pad arrow = crouch,
+up d-pad arrow = look up,
+Alternatively can use WASD keys for movement, 
+Space = jump,
+z = use powerup
 
 
