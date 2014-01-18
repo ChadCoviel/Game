@@ -1,5 +1,6 @@
 package tutorial;
 //import tutorial.Example2;
+import tutorial.Example7.Shooter;
 import jgame.*;
 import jgame.platform.*;
 
@@ -10,53 +11,21 @@ public class Player extends JGObject{
 	//Used as a proxy for redirecting method requests here because Java
 	//doesn't allow multiple inheritance
 	private StdGame myEngine;
-//	private int xpos;
-//	private int ypos;
+	private int bullettime = 0;
+
 	
-//	myEngine.defineImage(
-//			"ball", // graphic name
-//			"-", 0, // tile name and tile cid (in case we use it as a tile)
-//			"ball20-red.gif", // file
-//			"-" // graphical operation (may be one or two out of
-//			    //"x","y", "l","r","u")
-//		);
-	
-//	Player(String name,boolean multiple,double x,double y, int ID, String animation,
-//			StdGame eng){
-//		super(name, //The name of the object (the player)
-//				multiple, //Allows for multiple objects of same name
-//				x,  // X position
-//				y, // Y Position 
-//				1, //Collision ID
-//				animation); //name of sprite/animation
-//		myEngine = eng;
-//	}
-	
-	public Player(double x, double y, double speed,String anim, StdGame eng){
-		super("player",true,x,y,1,anim, 0,0,32,16,0,0,speed,speed,-1);
+	public Player(double x, double y, double speed,StdGame eng){
+		super("player",true,x,y,1,null, 0,0,32,16,0,0,speed,speed,-1);
 		myEngine = eng;
+		
+		//Defines the image to be used for the player and sets it
+		myEngine.defineImage("player","-",1,"limbo.png","-");
+		this.setImage("player");
+		
+		setBBox(this.getImageBBox().x,this.getImageBBox().y,this.getImageBBox().width-70,
+				this.getImageBBox().height-50);
 	}
-	
-	/** Draw the object. */
-//	public void paint() {
-//		// Draw a yellow ball
-//		myEngine.setColor(JGColor.yellow);
-//		myEngine.drawOval(x,y,16,16,true,true);
-//	}
-	
-//	//Manually moving the character
-//	private void move(){
-//		
-//	}
-	
-//	/** Handle collision with other objects. Called by checkCollision. */
-//	private void hit(JGObject obj) {
-//		if (checkCollision() {
-//			// reverse direction
-//
-//		}
-//	}
-	
+		
 	public void move(){
 		setDir(0,0);
 		if (myEngine.getKey(myEngine.key_up)    && y > yspeed)               ydir=-1;
@@ -64,17 +33,29 @@ public class Player extends JGObject{
 		if (myEngine.getKey(myEngine.key_left)  && x > xspeed)               xdir=-1;
 		if (myEngine.getKey(myEngine.key_right) && x < myEngine.pfWidth()-32-yspeed)  xdir=1;
 		
-		myEngine.defineImage(
-				"star", // graphic name
-				"-", 0, // tile name and tile cid (in case we use it as a tile)
-				"Black_star.png", // file
-				"-" // graphical operation (may be one or two out of
-				    //"x","y", "l","r","u")
-			);
-		if(myEngine.getKey('Z'))
-			new BlackStar(x+100.0,y+50.0,5.0,"star",myEngine);
-		//super.move();
-		//whatever code you need
+		//Checks to see if the user is trying to fire a projectile and does so
+		checkFire();
+	}
+
+	public void hit(JGObject obj){
+		//player dies if the enemy makes physical contact (or projectile)
+		//if(myEngine.checkCollision(this.colid,2))
+		if(obj.colid == 2 || obj.colid == 4){
+			remove();
+			myEngine.lifeLost();
+		}
 		
+	}
+	
+	private void checkFire() {
+		// TODO Auto-generated method stub
+
+		// shoot a black star in the +x direction
+		if(myEngine.getKey('Z') && bullettime <= 0){
+			new BlackStar(x+100.0,y+50.0,25.0,myEngine);
+			bullettime = 8;
+		}
+	    
+	    if(bullettime > 0) bullettime--;
 	}
 }

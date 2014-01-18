@@ -33,9 +33,19 @@ public class BlackStar extends JGObject{
 //		myEngine = eng;
 //	}
 	
-	public BlackStar(double x, double y, double speed,String anim, StdGame eng){
-		super("player",true,x,y,1,anim, 0,0,32,16,0,0,speed,speed,-1);
+	public BlackStar(double x, double y, double speed, StdGame eng){
+		super("BlackStar",true,x,y,3,null, 0,0,32,16,0,0,speed,speed,expire_off_view);
 		myEngine = eng;
+		
+		//Defines and sets an image of a black star
+		myEngine.defineImage(
+				"star", // graphic name
+				"-", 3, // tile name and tile cid (in case we use it as a tile)
+				"Black_star.png", // file
+				"-" // graphical operation (may be one or two out of
+				    //"x","y", "l","r","u")
+		);
+		this.setImage("star");
 	}
 	
 	/** Draw the object. */
