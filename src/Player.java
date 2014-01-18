@@ -1,7 +1,6 @@
 //Chad M. Coviel
 import jgame.JGObject;
 import jgame.platform.StdGame;
-import tutorial.BlackStar;
 
 //Player object. This is the character that the human user will control
 //via input.

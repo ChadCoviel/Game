@@ -11,8 +11,7 @@ public class Reclaim extends StdGame {
 	private static int dimx,dimy;
 	//Determines at what level the player the user has won the game
 	private static int maxLevel=10;
-	private Player player;
-	
+	private Player player;	
 	public static void main(String [] args) {
 		dimx =800;
 		dimy=540;
@@ -55,7 +54,7 @@ public class Reclaim extends StdGame {
 		removeObjects(null,0);
 		
 		//Create player object
-		player = new Player(0, dimy/2,
+		new Player(0, dimy/2,
 				10.0,this);
 
 		// create as many enemies as the level number
@@ -103,10 +102,10 @@ public class Reclaim extends StdGame {
 		if(level >= maxLevel){
 			drawString("YOU WON!",
 					pfWidth()/2,300,0);
-			// we define a timer as an inner class, that shoots a bullet every
-			// 50 frames.
+			// we define a timer as an inner class, that signals game over after
+			// 500 frames.
 			new JGTimer(
-				500,    // timer alarms after 10 frames
+				500,    // timer alarms after 500 frames
 				false
 				             // automatically when the parent is removed.
 			) {

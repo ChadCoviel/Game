@@ -1,7 +1,7 @@
 //Chad M. Coviel
 import jgame.JGObject;
 import jgame.platform.StdGame;
-import tutorial.Fireball;
+
 
 
 //Player object. This is the character that the human user will control
