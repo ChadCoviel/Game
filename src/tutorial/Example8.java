@@ -39,12 +39,8 @@ public class Example8 extends StdGame {
 		// remove any remaining objects
 		removeObjects(null,0);
 		//Create player object
-		new Player("player",
-				true,
-				this.random(0,pfWidth()),
-				this.random(0,pfHeight()),
-				1,
-				null,this);
+		new Player(this.random(0,pfWidth()), this.random(0,pfHeight()),
+				2.0,this);
 		// create as many objects as the level number
 		for (int i=0; i<=level; i++)
 			new JGObject("player",true,

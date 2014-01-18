@@ -5,5 +5,6 @@
 	<classpathentry kind="lib" path="jgame-jre.jar"/>
 	<classpathentry kind="lib" path="Tutorial.jar"/>
 	<classpathentry kind="lib" path="resources"/>
+	<classpathentry kind="lib" path="PacmanAndZombies.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

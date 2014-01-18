@@ -13,14 +13,19 @@ public class Player extends JGObject{
 	private int xpos;
 	private int ypos;
 	
-	Player(String name,boolean multiple,double x,double y, int ID, String animation,
-			StdGame eng){
-		super(name, //The name of the object (the player)
-				multiple, //Allows for multiple objects of same name
-				x,  // X position
-				y, // Y Position 
-				1, //Collision ID
-				animation); //name of sprite/animation
+//	Player(String name,boolean multiple,double x,double y, int ID, String animation,
+//			StdGame eng){
+//		super(name, //The name of the object (the player)
+//				multiple, //Allows for multiple objects of same name
+//				x,  // X position
+//				y, // Y Position 
+//				1, //Collision ID
+//				animation); //name of sprite/animation
+//		myEngine = eng;
+//	}
+	
+	public Player(double x, double y, double speed, StdGame eng){
+		super("player",true,x,y,1,null, 0,0,32,16,0,0,speed,speed,-1);
 		myEngine = eng;
 	}
 	
@@ -45,10 +50,12 @@ public class Player extends JGObject{
 //	}
 	
 	public void move(){
-		if(myEngine.getKey(myEngine.KeyLeft));
-		myEngine.getKey(myEngine.KeyRight);
-		myEngine.getKey(myEngine.KeyDown);
-		myEngine.getKey(myEngine.KeyUp);
+		setDir(0,0);
+		if (myEngine.getKey(myEngine.key_up)    && y > yspeed)               ydir=-1;
+		if (myEngine.getKey(myEngine.key_down)  && y < myEngine.pfHeight()-16-yspeed) ydir=1;
+		if (myEngine.getKey(myEngine.key_left)  && x > xspeed)               xdir=-1;
+		if (myEngine.getKey(myEngine.key_right) && x < myEngine.pfWidth()-32-yspeed)  xdir=1;
+		//super.move();
 		//whatever code you need
 		
 	}
