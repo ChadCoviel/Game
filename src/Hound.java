@@ -1,6 +1,6 @@
-package tutorial;
+
 //import tutorial.Example2;
-import tutorial.Example7.Shooter;
+//import tutorial.Example7.Shooter;
 import jgame.*;
 import jgame.platform.*;
 
@@ -11,8 +11,28 @@ public class Hound extends JGObject{
 	//Used as a proxy for redirecting method requests here because Java
 	//doesn't allow multiple inheritance
 	private StdGame myEngine;
-	//Used to time each projectile launch
+//	private int xpos;
+//	private int ypos;
 	private int bullettime = 0;
+	
+//	myEngine.defineImage(
+//			"ball", // graphic name
+//			"-", 0, // tile name and tile cid (in case we use it as a tile)
+//			"ball20-red.gif", // file
+//			"-" // graphical operation (may be one or two out of
+//			    //"x","y", "l","r","u")
+//		);
+	
+//	Player(String name,boolean multiple,double x,double y, int ID, String animation,
+//			StdGame eng){
+//		super(name, //The name of the object (the player)
+//				multiple, //Allows for multiple objects of same name
+//				x,  // X position
+//				y, // Y Position 
+//				1, //Collision ID
+//				animation); //name of sprite/animation
+//		myEngine = eng;
+//	}
 	
 	public Hound(double x, double y, double speed, StdGame eng){
 		super("hound",true,x,y,2,null, 0,0,32,16,0,0,speed,speed,expire_off_view);

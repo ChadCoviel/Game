@@ -1,13 +1,20 @@
-//import tutorial.Example8;
+//Chad M. Coviel
 import jgame.*;
 import jgame.platform.*;
-import tutorial.Example2;
 
-//The main class for running the game Reclaim
-public class Reclaim extends StdGame{
+/** Tutorial example 8: Using StdGame.  Defines a minimal game with the
+ * StdGame framework.  StdGame defines a game state machine with some useful
+ * default behaviour in the different states.  
+ */
+public class Reclaim extends StdGame {
+
+	private static int dimx,dimy;
+	private Player player;
 	
 	public static void main(String [] args) {
-		new Reclaim(new JGPoint(640,480));
+		dimx =800;
+		dimy=540;
+		new Reclaim(new JGPoint(dimx,dimy));
 	}
 
 	/** Application constructor. */
@@ -16,69 +23,84 @@ public class Reclaim extends StdGame{
 	/** Applet constructor. */
 	public Reclaim() { initEngineApplet(); }
 
-	public void initCanvas() { setCanvasSettings(40,30,16,16,null,null,null); }
+	//Able to change the number of tiles in the x,y directions based on
+	//the default and updated dimensions of the window
+	public void initCanvas() { setCanvasSettings((dimx*40)/640,(dimy*30)/480,
+			16,16,null,JGColor.blue,null); }
 
 	public void initGame() {
 		setFrameRate(35,2);
-		defineImage("ball","-",0,"ball20-red.gif","-");
+		defineImage("title","-",0,"reclaim.jpg","-");
+		defineImage("level1","-",0,"bg1.jpg","-");
+		setBGImage("title");
 		// If you want to have highscores in StdGame, add the following line.
 		setHighscores(
 			10, // number of highscores
 			new Highscore(0,"nobody"), // default entry for highscore
 			25 // max length of the player name
 		);
-		// We don't need to do anything special here.  StdGame's doFrame will
-		// be called now, which will do some initialisations and go to the 
-		// Title state.
 	}
 
 	/** Called when a new level is started. */
 	public void defineLevel() {
+		
+		//Once you've beaten all 9 levels you have won the game!
+		if(level == 2){
+			paintFrameInGame();
+			initGame();
+		}
+		
 		// remove any remaining objects
 		removeObjects(null,0);
+		
 		//Create player object
-		new Player("player",
-				true,
-				this.random(0,pfWidth()),
-				this.random(0,pfHeight()),
-				1,
-				"limbo.png");
-		// create as many objects as the level number
+		player = new Player(0, dimy/2,
+				10.0,this);
+
+		// create as many enemies as the level number
 		for (int i=0; i<=level; i++)
-			new JGObject("ball",true,
-				random(0,pfWidth()-20),random(0,pfHeight()-20),
-				1, "ball", random(-1,1),random(-1,1));
+			new Hound(dimx, this.random(20,pfHeight()),
+					10.0,this);
+		setBGImage("level1");
 	}
 
 	/** Called when a new life is introduced (that is, at the beginning of the
 	 * game and every time the player dies. */
 	public void initNewLife() {
-		// ... initialise player sprite ...
+		//Start the level over from the beginning when the player dies
+		defineLevel();
 	}
 
 	/** This is the most important method you have to fill in in StdGame. */
 	public void doFrameInGame() {
 		moveObjects(null,0);
-		// we simply increment the player score to illustrate handling of score
-		score++;
-		// the main game state events, level done and life lost, are simulated
-		// using keys.
-		if (getKey('N')) {
-			// Signal that the level is finished. We may call this method at
-			// any point, including from within a game object.
+
+		//Check for collisions between the player and 
+		//enemies/enemy projectiles
+		this.checkCollision(1,2 | 4);
+		
+		//Level won when no more enemy objects on field
+		if(countObjects("hound", 2) == 0)
 			levelDone();
-		}
-		if (getKey('D')) {
-			// Signal that we have lost a life.
-			lifeLost();
-		}
+		
+		//Game over when the player runs out of lives
+		if(lives <= 0)
+			gameOver();
 	}
 
 	public void paintFrameInGame() {
-		// display instructions
+		// display instruction
 		setFont(new JGFont("arial",0,15));
-		drawString("Press N for the next level, or D to lose a life.",
-			pfWidth()/2,180,0);
+		
+		if(level < 2)
+			drawString("Press 'Z' to shoot and arrow keys to move!",
+					pfWidth()/2,180,0);
+		
+		//Victory message!
+		if(level == 2)
+			drawString("YOU WON!",
+					pfWidth()/2,300,0);
 		
 	}
+
 }

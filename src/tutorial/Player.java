@@ -22,6 +22,7 @@ public class Player extends JGObject{
 		myEngine.defineImage("player","-",1,"limbo.png","-");
 		this.setImage("player");
 		
+		//Resizes the player collision boundaries
 		setBBox(this.getImageBBox().x,this.getImageBBox().y,this.getImageBBox().width-70,
 				this.getImageBBox().height-50);
 	}
