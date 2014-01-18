@@ -9,6 +9,8 @@ import jgame.platform.*;
 public class Reclaim extends StdGame {
 
 	private static int dimx,dimy;
+	//Determines at what level the player the user has won the game
+	private static int maxLevel=10;
 	private Player player;
 	
 	public static void main(String [] args) {
@@ -45,9 +47,8 @@ public class Reclaim extends StdGame {
 	public void defineLevel() {
 		
 		//Once you've beaten all 9 levels you have won the game!
-		if(level == 2){
+		if(level == maxLevel){
 			paintFrameInGame();
-			initGame();
 		}
 		
 		// remove any remaining objects
@@ -92,14 +93,29 @@ public class Reclaim extends StdGame {
 		// display instruction
 		setFont(new JGFont("arial",0,15));
 		
-		if(level < 2)
+		if(level < maxLevel)
 			drawString("Press 'Z' to shoot and arrow keys to move!",
 					pfWidth()/2,180,0);
 		
+		//Font settings specifically for the victory message
+		setFont(new JGFont("arial",0,50));
 		//Victory message!
-		if(level == 2)
+		if(level >= maxLevel){
 			drawString("YOU WON!",
 					pfWidth()/2,300,0);
+			// we define a timer as an inner class, that shoots a bullet every
+			// 50 frames.
+			new JGTimer(
+				500,    // timer alarms after 10 frames
+				false
+				             // automatically when the parent is removed.
+			) {
+				//Game over
+				public void alarm() {
+					gameOver();
+				}
+			};
+		}
 		
 	}
 

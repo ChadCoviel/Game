@@ -39,6 +39,7 @@ public class Hound extends JGObject{
 		//if(myEngine.checkCollision(this.colid,2))
 		if(obj.colid == 1)
 			myEngine.lifeLost();
+		//Enemy dies if hit by player projectile which inceases the user's score
 		if(obj.colid == 3){
 			remove();
 			myEngine.score += 50;
@@ -47,6 +48,7 @@ public class Hound extends JGObject{
 	
 	public void move(){
 		setDir(0,0);
+		//Moves to the left
 		xdir=-1;
 		ydir=0;
 		
@@ -58,8 +60,8 @@ public class Hound extends JGObject{
 		//A sort of timer to allow for properly spaced projectile launches
 		if(bullettime <= 0){
 			// shoot a fireball at the player
-			new Fireball(x,y+50.0,20.0,myEngine);
-			bullettime = 32;
+			new Fireball(x,y+50.0,17.5,myEngine);
+			bullettime = 50;
 		}
 		
 		//Decrements bullettime counter

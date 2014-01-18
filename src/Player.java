@@ -1,8 +1,7 @@
-
-//import tutorial.Example2;
-//import tutorial.Example7.Shooter;
-import jgame.*;
-import jgame.platform.*;
+//Chad M. Coviel
+import jgame.JGObject;
+import jgame.platform.StdGame;
+import tutorial.BlackStar;
 
 //Player object. This is the character that the human user will control
 //via input.
@@ -22,6 +21,7 @@ public class Player extends JGObject{
 		myEngine.defineImage("player","-",1,"limbo.png","-");
 		this.setImage("player");
 		
+		//Resizes the player collision boundaries
 		setBBox(this.getImageBBox().x,this.getImageBBox().y,this.getImageBBox().width-70,
 				this.getImageBBox().height-50);
 	}

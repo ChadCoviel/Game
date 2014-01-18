@@ -1,5 +1,4 @@
-
-//import tutorial.Example2;
+//Chad M. Coviel
 import jgame.*;
 import jgame.platform.*;
 
@@ -20,6 +19,7 @@ public class Fireball extends JGObject{
 		this.setImage("fireball");
 	}
 	
+	//If this object hits the player a life is lost
 	public void hit(JGObject obj){
 		if(obj.colid == 1)
 			myEngine.lifeLost();
@@ -27,10 +27,8 @@ public class Fireball extends JGObject{
 	
 	public void move(){
 		setDir(0,0);
+		//Moves left
 		xdir = -1;
-		ydir = 0;
-		//super.move();
-		//whatever code you need
-		
+		ydir = 0;		
 	}
 }
