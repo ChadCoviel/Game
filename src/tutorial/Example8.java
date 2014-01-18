@@ -23,6 +23,7 @@ public class Example8 extends StdGame {
 	public void initGame() {
 		setFrameRate(35,2);
 		defineImage("player","-",0,"limbo.png","-");
+		defineImage("")
 		// If you want to have highscores in StdGame, add the following line.
 		setHighscores(
 			10, // number of highscores

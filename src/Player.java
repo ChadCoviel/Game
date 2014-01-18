@@ -20,9 +20,22 @@ public class Player extends JGObject{
 	}
 	
 	/** Draw the object. */
-	public void paint() {
-		// Draw a yellow ball
-		engine.setColor(JGColor.yellow);
-		engine.drawOval(x,y,16,16,true,true);
+//	public void paint() {
+//		// Draw a yellow ball
+//		engine.setColor(JGColor.yellow);
+//		engine.drawOval(x,y,16,16,true,true);
+//	}
+	
+	//Manually moving the character
+	public void move(){
+		
+	}
+	
+	/** Handle collision with other objects. Called by checkCollision. */
+	public void hit(JGObject obj) {
+		if (checkCollision() {
+			// reverse direction
+
+		}
 	}
 }
