@@ -3,18 +3,14 @@ Game
 
 HW #1 Comp Sci 308
 
-I plan to code a simple side scrolling 2D platforming game. I want the player to be able to jump, run, collect items, 
-attack enemies, and have a good time. The game will have multiple levels. The levels become more difficult as the player
-progresses. The game is called: Reclaim. The purpose of the game is to attain lost memory experiences and to do so the 
-player much traverse a series of physical obstacles and enemies in the journey to Reclaim full knowledge of oneself. 
+I plan to code a simple side scrolling 2D shoort game. I want the player to be able to move in all directions and fire projectile ninja black stars at enemies. The game will have multiple levels. The levels become more difficult as the player progresses because of more enemies. The game is called: Reclaim. The purpose of the game is to survive a limbo like dream state by fending off increasing waves of hell hound demons that shoot fire at the player.
 
 Controls:
-left d-pad arrow = move left on screen,
-right d-pad arrow = move right on screen,
-down d-pad arrow = crouch,
-up d-pad arrow = look up,
-Alternatively can use WASD keys for movement, 
-Space = jump,
-z = use powerup
+left d-pad arrow = move left,
+right d-pad arrow = move right,
+down d-pad arrow = move down,
+up d-pad arrow = move up,
+'Z' = fire black star
 
+***NOTE: Run the game from the Reclaim.java main class file!!!!!
 
