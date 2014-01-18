@@ -10,7 +10,7 @@ public class Example8 extends StdGame {
 
 	private static int dimx,dimy;
 	public static void main(String [] args) {
-		dimx =1000;
+		dimx =800;
 		dimy=800;
 		new Example8(new JGPoint(dimx,dimy));
 	}
@@ -46,12 +46,12 @@ public class Example8 extends StdGame {
 		// remove any remaining objects
 		removeObjects(null,0);
 		//Create player object
-		new Player(this.random(0,pfWidth()), this.random(0,pfHeight()),
-				5.0,"player",this);
+		new Player(0, dimy/2,
+				7.0,"player",this);
 		// create as many objects as the level number
 		for (int i=0; i<=level; i++)
-			new Hound(this.random(0,pfWidth()), this.random(0,pfHeight()),
-					7.0,"hound",this);
+			new Enemy1(dimx, this.random(20,pfHeight()),
+					10.0,"hound",this);
 	}
 
 	/** Called when a new life is introduced (that is, at the beginning of the
