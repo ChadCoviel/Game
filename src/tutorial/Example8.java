@@ -23,7 +23,6 @@ public class Example8 extends StdGame {
 	public void initGame() {
 		setFrameRate(35,2);
 		defineImage("player","-",0,"limbo.png","-");
-		defineImage("")
 		// If you want to have highscores in StdGame, add the following line.
 		setHighscores(
 			10, // number of highscores
@@ -39,6 +38,13 @@ public class Example8 extends StdGame {
 	public void defineLevel() {
 		// remove any remaining objects
 		removeObjects(null,0);
+		//Create player object
+		new Player("player",
+				true,
+				this.random(0,pfWidth()),
+				this.random(0,pfHeight()),
+				1,
+				null,this);
 		// create as many objects as the level number
 		for (int i=0; i<=level; i++)
 			new JGObject("player",true,

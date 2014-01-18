@@ -1,6 +1,7 @@
 //import tutorial.Example8;
 import jgame.*;
 import jgame.platform.*;
+import tutorial.Example2;
 
 //The main class for running the game Reclaim
 public class Reclaim extends StdGame{
@@ -35,6 +36,13 @@ public class Reclaim extends StdGame{
 	public void defineLevel() {
 		// remove any remaining objects
 		removeObjects(null,0);
+		//Create player object
+		new Player("player",
+				true,
+				this.random(0,pfWidth()),
+				this.random(0,pfHeight()),
+				1,
+				"limbo.png");
 		// create as many objects as the level number
 		for (int i=0; i<=level; i++)
 			new JGObject("ball",true,
