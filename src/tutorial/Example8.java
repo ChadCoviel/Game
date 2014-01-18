@@ -8,8 +8,11 @@ import jgame.platform.*;
  */
 public class Example8 extends StdGame {
 
+	private static int dimx,dimy;
 	public static void main(String [] args) {
-		new Example8(new JGPoint(640,480));
+		dimx =1000;
+		dimy=800;
+		new Example8(new JGPoint(dimx,dimy));
 	}
 
 	/** Application constructor. */
@@ -18,11 +21,15 @@ public class Example8 extends StdGame {
 	/** Applet constructor. */
 	public Example8() { initEngineApplet(); }
 
-	public void initCanvas() { setCanvasSettings(40,30,16,16,null,JGColor.blue,null); }
+	//Able to change the number of tiles in the x,y directions based on
+	//the default and updated dimensions of the window
+	public void initCanvas() { setCanvasSettings((dimx*40)/640,(dimy*30)/480,
+			16,16,null,JGColor.blue,null); }
 
 	public void initGame() {
 		setFrameRate(35,2);
 		defineImage("player","-",0,"limbo.png","-");
+		defineImage("hound","-",0,"Enemy1.gif","-");
 		// If you want to have highscores in StdGame, add the following line.
 		setHighscores(
 			10, // number of highscores
@@ -40,12 +47,11 @@ public class Example8 extends StdGame {
 		removeObjects(null,0);
 		//Create player object
 		new Player(this.random(0,pfWidth()), this.random(0,pfHeight()),
-				2.0,this);
+				5.0,"player",this);
 		// create as many objects as the level number
 		for (int i=0; i<=level; i++)
-			new JGObject("player",true,
-				random(0,pfWidth()-20),random(0,pfHeight()-20),
-				1, "player", random(-1,1),random(-1,1));
+			new Hound(this.random(0,pfWidth()), this.random(0,pfHeight()),
+					7.0,"hound",this);
 	}
 
 	/** Called when a new life is introduced (that is, at the beginning of the

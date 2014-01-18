@@ -5,7 +5,7 @@ import jgame.platform.*;
 
 //Player object. This is the character that the human user will control
 //via input.
-public class Player extends JGObject{
+public class Hound extends JGObject{
 	
 	//Used as a proxy for redirecting method requests here because Java
 	//doesn't allow multiple inheritance
@@ -32,7 +32,7 @@ public class Player extends JGObject{
 //		myEngine = eng;
 //	}
 	
-	public Player(double x, double y, double speed,String anim, StdGame eng){
+	public Hound(double x, double y, double speed,String anim, StdGame eng){
 		super("player",true,x,y,1,anim, 0,0,32,16,0,0,speed,speed,-1);
 		myEngine = eng;
 	}
@@ -59,10 +59,8 @@ public class Player extends JGObject{
 	
 	public void move(){
 		setDir(0,0);
-		if (myEngine.getKey(myEngine.key_up)    && y > yspeed)               ydir=-1;
-		if (myEngine.getKey(myEngine.key_down)  && y < myEngine.pfHeight()-16-yspeed) ydir=1;
-		if (myEngine.getKey(myEngine.key_left)  && x > xspeed)               xdir=-1;
-		if (myEngine.getKey(myEngine.key_right) && x < myEngine.pfWidth()-32-yspeed)  xdir=1;
+		xdir=-1;
+		ydir=0;
 		//super.move();
 		//whatever code you need
 		
